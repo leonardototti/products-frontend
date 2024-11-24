@@ -1,6 +1,6 @@
 {
   "tabWidth": 2,
-  "printWidth": 120,
+  "printWidth": 80,
   "endOfLine": "auto",
   "arrowParens": "avoid",
   "trailingComma": "es5",
