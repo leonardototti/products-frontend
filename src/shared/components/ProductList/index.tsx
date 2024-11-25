@@ -16,6 +16,7 @@ interface IProductListProps {
   page: number;
   setPage: (page: number) => void;
   handleNewProduct: () => void;
+  handleRemoveProduct: (id: string) => void;
 }
 
 const formatter = new Intl.NumberFormat("pt-BR", {
@@ -30,6 +31,7 @@ export default function ProductList({
   page,
   setPage,
   handleNewProduct,
+  handleRemoveProduct,
 }: IProductListProps) {
   if (isError) {
     return <ProductListError />;
@@ -60,17 +62,21 @@ export default function ProductList({
       renderItem={product => (
         <List.Item>
           <Card
+            className="product-card"
             hoverable
             cover={getCardCover(product)}
             actions={[
-              <div>
+              <div style={{ padding: "12px 0" }}>
                 <EditTwoTone
                   key="edit"
                   style={{ fontSize: 18 }}
                   twoToneColor={"#032d8a"}
                 />
               </div>,
-              <div>
+              <div
+                style={{ padding: "12px 0" }}
+                onClick={() => handleRemoveProduct(product.id)}
+              >
                 <DeleteTwoTone
                   key="remove"
                   style={{ fontSize: 18 }}

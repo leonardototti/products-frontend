@@ -47,6 +47,9 @@ export const Providers = ({ router, client }: IProvidersProps) => {
               paddingInlineSM: 20,
               primaryShadow: "none",
             },
+            Message: {
+              contentPadding: 15,
+            },
           },
         }}
       >

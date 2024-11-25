@@ -22,3 +22,7 @@ export async function createProduct({
 
   return product;
 }
+
+export async function removeProduct(id: string) {
+  await productsService.remove(id);
+}
