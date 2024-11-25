@@ -23,6 +23,27 @@ export async function createProduct({
   return product;
 }
 
+export async function editProduct({
+  id,
+  imageId,
+  image,
+  ...productData
+}: Partial<ICreateProductDTO> & {
+  id: string;
+  imageId: string;
+  image?: UploadFile;
+}) {
+  const { data: product } = await productsService.update(id, productData);
+
+  if (image) {
+    await productImagesService.remove(imageId);
+    await productImagesService.create({
+      product_id: product.id,
+      image,
+    });
+  }
+}
+
 export async function removeProduct(id: string) {
   await productsService.remove(id);
 }

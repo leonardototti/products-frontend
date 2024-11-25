@@ -1,11 +1,11 @@
 import { Button, Empty } from "antd";
 
 interface IProductListEmptyProps {
-  handleNewProduct: () => void;
+  handleCreateProduct: () => void;
 }
 
 export default function ProductListEmpty({
-  handleNewProduct,
+  handleCreateProduct,
 }: IProductListEmptyProps) {
   return (
     <Empty
@@ -17,7 +17,7 @@ export default function ProductListEmpty({
       imageStyle={{ height: 110 }}
       description="Nenhum produto encontrado."
     >
-      <Button onClick={handleNewProduct}>Adicionar novo produto</Button>
+      <Button onClick={handleCreateProduct}>Adicionar novo produto</Button>
     </Empty>
   );
 }

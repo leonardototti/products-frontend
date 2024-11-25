@@ -15,7 +15,8 @@ interface IProductListProps {
   isError: boolean;
   page: number;
   setPage: (page: number) => void;
-  handleNewProduct: () => void;
+  handleCreateProduct: () => void;
+  handleEditProduct: (product: IProduct) => void;
   handleRemoveProduct: (id: string) => void;
 }
 
@@ -30,7 +31,8 @@ export default function ProductList({
   isError,
   page,
   setPage,
-  handleNewProduct,
+  handleCreateProduct,
+  handleEditProduct,
   handleRemoveProduct,
 }: IProductListProps) {
   if (isError) {
@@ -42,7 +44,7 @@ export default function ProductList({
   }
 
   if (!products?.result?.length) {
-    return <ProductListEmpty handleNewProduct={handleNewProduct} />;
+    return <ProductListEmpty handleCreateProduct={handleCreateProduct} />;
   }
 
   const { Meta } = Card;
@@ -66,7 +68,10 @@ export default function ProductList({
             hoverable
             cover={getCardCover(product)}
             actions={[
-              <div style={{ padding: "12px 0" }}>
+              <div
+                style={{ padding: "12px 0" }}
+                onClick={() => handleEditProduct(product)}
+              >
                 <EditTwoTone
                   key="edit"
                   style={{ fontSize: 18 }}

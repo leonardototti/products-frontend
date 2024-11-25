@@ -8,6 +8,8 @@ import CreateModal, { ICreateModalRef } from "@/shared/components/Modal/Create";
 import { useCallback, useRef } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { removeProduct } from "@/shared/data/products";
+import EditModal, { IEditModalRef } from "@/shared/components/Modal/Edit";
+import { IProduct } from "@/shared/interfaces/IProduct";
 
 export default function HomePage() {
   const [page, setPage] = usePageParam(1);
@@ -17,10 +19,18 @@ export default function HomePage() {
   const { message, modal } = App.useApp();
 
   const createRef = useRef<ICreateModalRef>(null);
+  const editRef = useRef<IEditModalRef>(null);
 
-  const handleNewProduct = useCallback(() => {
+  const handleCreateProduct = useCallback(() => {
     createRef.current?.openModal();
   }, [createRef]);
+
+  const handleEditProduct = useCallback(
+    (product: IProduct) => {
+      editRef.current?.openModal(product);
+    },
+    [editRef]
+  );
 
   const { mutateAsync: removeProductFn, isPending } = useMutation({
     mutationKey: ["removeProduct"],
@@ -57,7 +67,7 @@ export default function HomePage() {
         <div className="container">
           <header>
             <h1>Produtos</h1>
-            <Button type="primary" onClick={handleNewProduct}>
+            <Button type="primary" onClick={handleCreateProduct}>
               Novo produto
             </Button>
           </header>
@@ -69,7 +79,8 @@ export default function HomePage() {
               isError={isError}
               page={page}
               setPage={setPage}
-              handleNewProduct={handleNewProduct}
+              handleCreateProduct={handleCreateProduct}
+              handleEditProduct={handleEditProduct}
               handleRemoveProduct={handleRemoveProduct}
             />
           </div>
@@ -78,6 +89,7 @@ export default function HomePage() {
       <Footer />
 
       <CreateModal ref={createRef} />
+      <EditModal ref={editRef} />
     </>
   );
 }
