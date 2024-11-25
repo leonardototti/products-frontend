@@ -44,5 +44,7 @@
 
   .product-image {
     aspect-ratio: 1/1;
+    width: 100%;
+    object-fit: contain;
   }
 }

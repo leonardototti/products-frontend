@@ -4,10 +4,18 @@ import { useProducts } from "@/shared/hooks/useProducts";
 import ProductList from "@/shared/components/ProductList";
 import { usePageParam } from "@/shared/hooks/usePageParam";
 import Footer from "@/shared/components/Footer";
+import CreateModal, { ICreateModalRef } from "@/shared/components/Modal/Create";
+import { useCallback, useRef } from "react";
 
 export default function HomePage() {
   const [page, setPage] = usePageParam(1);
   const { data, isLoading, isError } = useProducts({ page });
+
+  const createRef = useRef<ICreateModalRef>(null);
+
+  const handleNewProduct = useCallback(() => {
+    createRef.current?.openModal();
+  }, [createRef]);
 
   return (
     <>
@@ -16,7 +24,9 @@ export default function HomePage() {
         <div className="container">
           <header>
             <h1>Produtos</h1>
-            <Button type="primary">Novo produto</Button>
+            <Button type="primary" onClick={handleNewProduct}>
+              Novo produto
+            </Button>
           </header>
 
           <div className="products-wrapper">
@@ -26,12 +36,14 @@ export default function HomePage() {
               isError={isError}
               page={page}
               setPage={setPage}
-              handleNewProduct={() => {}}
+              handleNewProduct={handleNewProduct}
             />
           </div>
         </div>
       </div>
       <Footer />
+
+      <CreateModal ref={createRef} />
     </>
   );
 }

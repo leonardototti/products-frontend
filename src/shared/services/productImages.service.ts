@@ -15,7 +15,7 @@ const create = async (
 ): Promise<AxiosResponse<IResponseBase & IProductImage>> => {
   const formData = new FormData();
 
-  formData.append("image", data.image);
+  formData.append("image", data.image as Blob);
   formData.append("product_id", data.product_id);
 
   return await api.post(path, formData, {

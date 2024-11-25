@@ -1,12 +1,18 @@
+import type { GetProp, UploadProps } from "antd";
+
+type UploadFile = Parameters<
+  GetProp<UploadProps, "onChange">
+>[0]["file"]["originFileObj"];
+
 export interface IProductImage {
   id: string;
   path: string;
   product_id: string;
-  createdAt: Date;
-  updatedAt: Date;
+  created_at: Date;
+  updated_at: Date;
 }
 
 export interface ICreateProductImageDTO {
-  image: File;
+  image: UploadFile;
   product_id: string;
 }

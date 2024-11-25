@@ -7,9 +7,9 @@ export interface IProduct {
   price: number;
   quantity: number;
   image: IProductImage | null;
-  createdAt: Date;
-  updatedAt: Date;
+  created_at: Date;
+  updated_at: Date;
 }
 
 export interface ICreateProductDTO
-  extends Omit<IProduct, "id" | "createdAt" | "updatedAt" | "image"> {}
+  extends Omit<IProduct, "id" | "created_at" | "updated_at" | "image"> {}

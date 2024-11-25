@@ -6,6 +6,10 @@ import { HappyProvider } from "@ant-design/happy-work-theme";
 
 import pt_BR from "antd/locale/pt_BR";
 
+const userPrefersReducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)"
+).matches;
+
 interface IProvidersProps {
   router: RouterProviderProps["router"];
   client: QueryClient;
@@ -33,6 +37,10 @@ export const Providers = ({ router, client }: IProvidersProps) => {
               paddingInline: 18,
               colorTextPlaceholder: "#a6a6a6",
             },
+            InputNumber: {
+              paddingInline: 18,
+              colorTextPlaceholder: "#a6a6a6",
+            },
             Button: {
               paddingInlineLG: 35,
               paddingInline: 30,
@@ -42,7 +50,7 @@ export const Providers = ({ router, client }: IProvidersProps) => {
           },
         }}
       >
-        <HappyProvider>
+        <HappyProvider disabled={userPrefersReducedMotion}>
           <App>
             <RouterProvider router={router} />
           </App>
