@@ -10,6 +10,9 @@ importers:
       "@ant-design/happy-work-theme":
         specifier: ^1.0.0
         version: 1.0.0(antd@5.22.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      "@ant-design/icons":
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       "@tanstack/react-query":
         specifier: ^5.61.3
         version: 5.61.3(react@18.3.1)
