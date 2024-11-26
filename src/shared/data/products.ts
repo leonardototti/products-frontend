@@ -35,8 +35,11 @@ export async function editProduct({
 }) {
   const { data: product } = await productsService.update(id, productData);
 
-  if (image) {
-    await productImagesService.remove(imageId);
+  if (image?.size) {
+    if (imageId) {
+      await productImagesService.remove(imageId);
+    }
+
     await productImagesService.create({
       product_id: product.id,
       image,
